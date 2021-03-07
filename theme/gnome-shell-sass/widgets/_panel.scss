@@ -2,8 +2,8 @@
 // a.k.a. the panel
 
 $panel_corner_radius: $base_border_radius+1;
-$panel_bg_color: #000;
-$panel_fg_color: #ccc;
+$panel_bg_color: transparent;
+$panel_fg_color: white;
 $panel_height: 1.86em;
 
 
@@ -44,13 +44,13 @@ $panel_height: 1.86em;
 
   // panel menus
   .panel-button {
-    font-weight: bold;
+    font-weight: lighter;
     color: $panel_fg_color;
     -natural-hpadding: $base_padding * 2;
     -minimum-hpadding: $base_padding;
 
     &:hover {
-      color: lighten($panel_fg_color, 20%);
+      background-color: opacify(lighten($panel_bg_color,100%), 0.1);
     }
 
     &:active, &:overview, &:focus, &:checked {
@@ -82,19 +82,21 @@ $panel_height: 1.86em;
   .panel-button {
     &:active, &:overview, &:focus, &:checked {
       // Trick due to St limitations. It needs a background to draw a box-shadow
-      background-color: rgba(0, 0, 0, 0.01);
-      box-shadow: inset 0 -2px 0 0 lighten($selected_bg_color,5%);
+      background-color: opacify(lighten($panel_bg_color,100%), 0.2);
+      box-shadow: inset 0 -2px 0 0 lighten($panel_fg_color,5%);
+      
     }
   }
 
   .panel-button.clock-display {
     // Move highlight from .panel-button to .clock
     &:active, &:overview, &:focus, &:checked {
-      box-shadow: none;
+      background-color: opacify(lighten($panel_bg_color,100%), 0.2);
+      box-shadow: inset 0 -2px 0 0 lighten($panel_fg_color,5%);
 
       .clock {
-        background-color: rgba(0, 0, 0, 0.01);
-        box-shadow: inset 0 -2px 0 0 lighten($selected_bg_color,5%);
+        //background-color: opacify(lighten($panel_bg_color,100%), 0.1);
+        box-shadow: inset 0 -2px 0 0 lighten($panel_fg_color,5%);
       }
     }
   }
@@ -118,4 +120,16 @@ $panel_height: 1.86em;
 #appMenu {
   spacing: $base_spacing;
   .label-shadow { color: transparent; }
+}
+#panelActivities.panel-button
+{
+  margin-left: 0.4em;
+}
+
+#panelActivities.panel-button StLabel {
+  background-image: url("assets/activities.svg");
+  background-size: contain;
+  width: 1.5em;
+  height: 1.5em;
+  color: transparent;
 }

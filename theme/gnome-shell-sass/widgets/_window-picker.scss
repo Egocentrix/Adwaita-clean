@@ -36,7 +36,7 @@ $window_clone_border_size: 6px;
 // Window titles
 .window-caption {
   color: $osd_fg_color;
-  background-color: $osd_bg_color;
+  background-color: $selected_bg_color;
   border:1px solid $osd_outer_borders_color;
   border-radius: $base_border_radius + 1;
   padding: $base_padding $base_padding * 2;
